@@ -1,32 +1,30 @@
 @extends('layouts.app')
 
-@section('title', 'Beasiswa Kampus Top Indonesia')
+@section('title', 'Website Kampus Top di Indonesia')
 
 @section('content')
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="hero-pattern"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
+    <div class="deco-circle"></div>
+    <div class="deco-circle"></div>
     
     <div class="container hero-content">
         <div class="text-center">
             <div class="hero-badge">
-                <i class="fas fa-award me-2"></i> 10 Kampus Terbaik Indonesia
+                <i class="fas fa-award"></i> Kampus Top Indonesia
             </div>
             <h1>
-                🎓 <span class="highlight-text">10 KAMPUS</span><br>
-                <span style="font-size: 0.8em;">BANYAK BEASISWA</span>
+                <span class="highlight">Kampus Top</span><br>
+                <span class="highlight-secondary">di Indonesia</span>
             </h1>
             <p class="subtitle">
-                Temukan informasi beasiswa dari 10 kampus terbaik di Indonesia dalam satu tempat!
+                Temukan informasi lengkap tentang kampus-kampus terbaik di Indonesia dan program beasiswanya
             </p>
             
-            <form action="{{ route('scholarships.index') }}" method="GET" class="search-box" id="searchForm">
+            <form action="{{ route('scholarships.index') }}" method="GET" class="search-box">
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-search ms-4" style="color: #adb5bd;"></i>
-                    <input type="text" name="search" id="searchInput" class="form-control" placeholder="Cari beasiswa, kampus, atau jurusan..." autocomplete="off">
+                    <i class="fas fa-search ms-4" style="color: #B8A9C9;"></i>
+                    <input type="text" name="search" id="searchInput" class="form-control" placeholder="Cari kampus, program studi, atau beasiswa..." autocomplete="off">
                     <button type="submit">
                         <i class="fas fa-arrow-right me-2"></i>Cari
                     </button>
@@ -46,22 +44,22 @@
 </section>
 
 <!-- Universities Section -->
-<section class="py-5" style="background: #f8f9fa;">
+<section class="py-5" style="background: white;">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="badge" style="background: var(--gradient-primary); padding: 0.5rem 1.5rem; font-size: 0.9rem;">
+            <span class="section-badge">
                 <i class="fas fa-university me-2"></i> Pilihan Terbaik
             </span>
-            <h2 class="section-title mt-3">10 <span class="highlight">Kampus Terbaik</span> di Indonesia</h2>
+            <h2 class="section-title mt-3">Kampus <span class="highlight">Top</span> di Indonesia</h2>
             <p class="section-subtitle">Jelajahi berbagai program beasiswa dari kampus-kampus unggulan</p>
         </div>
         
         <div class="row g-4">
             @foreach($universities as $index => $uni)
-            <div class="col-md-4 col-lg-3 fade-in" style="animation-delay: {{ $index * 0.08 }}s">
+            <div class="col-md-4 col-lg-3 fade-in" style="animation-delay: {{ $index * 0.05 }}s">
                 <div class="university-card" onclick="location.href='{{ route('university.show', $uni->id) }}'">
                     <span class="card-number">#{{ $index + 1 }}</span>
-                    <div class="icon-wrapper" style="background: {{ $uni->color ?? '#667eea' }};">
+                    <div class="icon-wrapper" style="background: {{ $uni->color ?? '#6C5CE7' }};">
                         {{ $uni->acronym }}
                     </div>
                     <h5>{{ $uni->name }}</h5>
@@ -88,8 +86,8 @@
     <div class="container">
         <div class="row">
             <div class="col-6 col-md-3 stat-item fade-in" style="animation-delay: 0.1s;">
-                <div class="stat-number">10+</div>
-                <div class="stat-label">Kampus Unggulan</div>
+                <div class="stat-number">{{ $universities->count() }}+</div>
+                <div class="stat-label">Kampus Top</div>
             </div>
             <div class="col-6 col-md-3 stat-item fade-in" style="animation-delay: 0.2s;">
                 <div class="stat-number">50+</div>
@@ -108,10 +106,10 @@
 </section>
 
 <!-- Featured Scholarships -->
-<section class="py-5" style="background: white;">
+<section class="py-5" style="background: #FAF8FF;">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="badge" style="background: linear-gradient(135deg, #f093fb, #f5576c); padding: 0.5rem 1.5rem; font-size: 0.9rem;">
+            <span class="section-badge" style="background: rgba(253, 121, 168, 0.12); color: var(--secondary);">
                 <i class="fas fa-star me-2"></i> Terbaru & Populer
             </span>
             <h3 class="section-title mt-3">🌟 <span class="highlight">Beasiswa Terbaru</span></h3>
@@ -131,10 +129,10 @@
                             {{ $scholarship->level }}
                         </span>
                     </div>
-                    <h5 style="font-weight: 700; font-size: 1.1rem; min-height: 50px;">{{ $scholarship->title }}</h5>
-                    <p class="text-muted small" style="min-height: 50px;">{{ Illuminate\Support\Str::limit($scholarship->description, 80) }}</p>
+                    <h5 style="font-weight: 700; font-size: 1.05rem; min-height: 48px; color: var(--text-primary);">{{ $scholarship->title }}</h5>
+                    <p class="text-muted small" style="min-height: 48px; color: var(--text-secondary);">{{ Illuminate\Support\Str::limit($scholarship->description, 80) }}</p>
                     <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
-                        <span style="font-weight: 600; color: #667eea; font-size: 0.9rem;">
+                        <span style="font-weight: 600; color: var(--primary); font-size: 0.85rem;">
                             <i class="fas fa-university me-1"></i> {{ $scholarship->university->name }}
                         </span>
                         <span class="deadline-text">
@@ -142,7 +140,7 @@
                         </span>
                     </div>
                     <div class="mt-3 text-end">
-                        <a href="{{ route('scholarship.show', $scholarship->id) }}" class="btn btn-sm btn-outline-gradient" style="padding: 0.4rem 1.2rem; font-size: 0.85rem;">
+                        <a href="{{ route('scholarship.show', $scholarship->id) }}" class="btn btn-sm btn-outline" style="padding: 0.3rem 1.2rem; font-size: 0.8rem; border-width: 1.5px;">
                             Lihat Detail <i class="fas fa-arrow-right ms-1"></i>
                         </a>
                     </div>
@@ -153,7 +151,7 @@
 
         @if($featuredScholarships->count() > 0)
         <div class="text-center mt-5">
-            <a href="{{ route('scholarships.index') }}" class="btn-outline-gradient">
+            <a href="{{ route('scholarships.index') }}" class="btn-outline">
                 Lihat Semua Beasiswa <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>
@@ -162,24 +160,24 @@
 </section>
 
 <!-- CTA Section -->
-<section style="background: url('https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=1920&q=80') center/cover no-repeat; padding: 100px 0; color: white; position: relative;">
-    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(12,12,29,0.92) 0%, rgba(26,26,62,0.92) 100%);"></div>
+<section style="background: linear-gradient(135deg, #2D1B69, #6C5CE7); padding: 80px 0; color: white; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.02)%22/></svg>') repeat; opacity: 0.3;"></div>
     <div class="container text-center position-relative" style="z-index: 1;">
-        <h2 style="font-weight: 900; font-size: 3.2rem; margin-bottom: 1rem;">
-            🚀 <span style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Raih Mimpi</span>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 900; font-size: 3rem; margin-bottom: 1rem;">
+            🚀 <span style="color: #FDCB6E;">Raih Mimpi</span>
         </h2>
-        <p style="font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem;">
-            Mulai langkahmu menuju kampus impian dengan beasiswa yang tepat
+        <p style="font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem;">
+            Mulai langkahmu menuju kampus impian dengan informasi yang tepat
         </p>
         <div>
-            <a href="{{ route('scholarships.index') }}" class="btn-gradient" style="font-size: 1.2rem; padding: 1.2rem 4rem;">
+            <a href="{{ route('scholarships.index') }}" class="btn-gradient" style="font-size: 1.1rem; padding: 1rem 3.5rem; background: white; color: var(--primary);">
                 <i class="fas fa-search me-2"></i> Cari Beasiswa Sekarang
             </a>
         </div>
-        <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-            <span><i class="fas fa-check-circle me-2" style="color: #38ef7d;"></i> Gratis</span>
-            <span><i class="fas fa-check-circle me-2" style="color: #38ef7d;"></i> Update Terbaru</span>
-            <span><i class="fas fa-check-circle me-2" style="color: #38ef7d;"></i> 100% Terpercaya</span>
+        <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;">
+            <span><i class="fas fa-check-circle me-2" style="color: #00CEC9;"></i> Gratis</span>
+            <span><i class="fas fa-check-circle me-2" style="color: #00CEC9;"></i> Update Terbaru</span>
+            <span><i class="fas fa-check-circle me-2" style="color: #00CEC9;"></i> 100% Terpercaya</span>
         </div>
     </div>
 </section>
