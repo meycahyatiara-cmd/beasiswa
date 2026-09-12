@@ -34,7 +34,7 @@ class ScholarshipController extends Controller
             });
         }
 
-        $scholarships = $query->orderBy('deadline')->paginate(9);
+        $scholarships = $query->orderBy('deadline')->paginate(12);
         
         if ($request->ajax()) {
             return response()->json($scholarships);
