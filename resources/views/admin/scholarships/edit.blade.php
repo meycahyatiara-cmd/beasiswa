@@ -1,138 +1,214 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Beasiswa')
+@section('title', 'Edit Beasiswa - Admin')
 
 @section('content')
 <style>
-    .admin-header {
-        background: linear-gradient(135deg, #6C5CE7 0%, #A29BFE 100%);
-        padding: 30px 0;
-        margin-top: 60px;
+    /* Header Form */
+    .form-header-admin {
+        background: linear-gradient(135deg, #2D1B69 0%, #6C5CE7 100%);
+        padding: 130px 0 60px;
         color: white;
+        margin-bottom: 2rem;
+    }
+
+    .form-header-admin h1 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 800;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Card Form Melayang */
+    .form-card {
+        background: white;
+        border-radius: 24px;
+        border: 1px solid rgba(108, 92, 231, 0.08);
+        box-shadow: 0 15px 50px rgba(108, 92, 231, 0.08);
+        padding: 2.5rem;
+        margin-top: -80px;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 5rem;
+    }
+
+    /* Styling Input Form */
+    .form-label {
+        font-weight: 600;
+        color: #2D1B69;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control, .form-select {
+        background-color: #FAF8FF;
+        border: 2px solid #E8F0FE;
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+        color: #4A3B72;
+        transition: all 0.3s;
+    }
+
+    .form-control:focus, .form-select:focus {
+        background-color: white;
+        border-color: #6C5CE7;
+        box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15);
+    }
+
+    /* Tombol Aksi */
+    .btn-save {
+        background: linear-gradient(135deg, #6C5CE7 0%, #A29BFE 100%);
+        color: white;
+        border: none;
+        padding: 0.8rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s;
+        box-shadow: 0 10px 25px rgba(108, 92, 231, 0.3);
+    }
+
+    .btn-save:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(108, 92, 231, 0.4);
+        color: white;
+    }
+
+    .btn-cancel {
+        background: #FAF8FF;
+        color: #6C5B7B;
+        border: 2px solid #E8F0FE;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-cancel:hover {
+        background: #FFE8EC;
+        color: #e74c3c;
+        border-color: #FFE8EC;
     }
 </style>
 
-<div class="admin-header">
+<!-- Header -->
+<div class="form-header-admin">
     <div class="container">
-        <h1 class="fw-bold mb-0">✏️ Edit Beasiswa</h1>
-        <p class="mb-0 opacity-75">Edit data beasiswa: {{ $scholarship->title }}</p>
+        <a href="{{ route('admin.scholarships.index') }}" class="text-white text-decoration-none mb-3 d-inline-block" style="opacity: 0.8;">
+            <i class="fas fa-arrow-left me-2"></i> Kembali ke Daftar
+        </a>
+        <h1>Edit Beasiswa</h1>
+        <p class="mb-0" style="opacity: 0.8; font-weight: 300;">Perbarui informasi untuk beasiswa: <strong>{{ $scholarship->title }}</strong></p>
     </div>
 </div>
 
-<div class="container py-4">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow-sm border-0 rounded-4">
-                <div class="card-body p-4">
-                    <form action="{{ route('admin.scholarships.update', $scholarship->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
+<div class="container">
+    <div class="form-card">
+        <form action="{{ route('admin.scholarships.update', $scholarship->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            
+            <h5 class="mb-4" style="color: #6C5CE7; border-bottom: 2px solid #F0E8FF; padding-bottom: 1rem;">
+                <i class="fas fa-edit me-2"></i> Informasi Utama
+            </h5>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Kampus <span class="text-danger">*</span></label>
-                            <select name="university_id" class="form-select @error('university_id') is-invalid @enderror" required>
-                                <option value="">Pilih Kampus</option>
-                                @foreach($universities as $uni)
-                                <option value="{{ $uni->id }}" {{ old('university_id', $scholarship->university_id) == $uni->id ? 'selected' : '' }}>{{ $uni->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('university_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+            <div class="row">
+                <!-- Kampus -->
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Pilih Kampus</label>
+                    <select name="university_id" class="form-select" required>
+                        @foreach($universities as $univ)
+                            <option value="{{ $univ->id }}" {{ old('university_id', $scholarship->university_id) == $univ->id ? 'selected' : '' }}>
+                                {{ $univ->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('university_id') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Judul Beasiswa <span class="text-danger">*</span></label>
-                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $scholarship->title) }}" required>
-                            @error('title')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                <!-- Judul Beasiswa -->
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Judul Beasiswa</label>
+                    <input type="text" name="title" class="form-control" value="{{ old('title', $scholarship->title) }}" required>
+                    @error('title') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Deskripsi <span class="text-danger">*</span></label>
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="4" required>{{ old('description', $scholarship->description) }}</textarea>
-                            @error('description')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                <!-- Jenis Beasiswa -->
+                <div class="col-md-4 mb-4">
+                    <label class="form-label">Jenis Beasiswa</label>
+                    <select name="type" class="form-select" required>
+                        <option value="full" {{ old('type', $scholarship->type) == 'full' ? 'selected' : '' }}>Beasiswa Penuh (Full)</option>
+                        <option value="partial" {{ old('type', $scholarship->type) == 'partial' ? 'selected' : '' }}>Beasiswa Parsial (Partial)</option>
+                    </select>
+                    @error('type') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Jenis <span class="text-danger">*</span></label>
-                                <select name="type" class="form-select @error('type') is-invalid @enderror" required>
-                                    <option value="full" {{ old('type', $scholarship->type) == 'full' ? 'selected' : '' }}>Beasiswa Penuh</option>
-                                    <option value="partial" {{ old('type', $scholarship->type) == 'partial' ? 'selected' : '' }}>Beasiswa Parsial</option>
-                                </select>
-                                @error('type')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Level <span class="text-danger">*</span></label>
-                                <select name="level" class="form-select @error('level') is-invalid @enderror" required>
-                                    <option value="S1" {{ old('level', $scholarship->level) == 'S1' ? 'selected' : '' }}>S1</option>
-                                    <option value="S2" {{ old('level', $scholarship->level) == 'S2' ? 'selected' : '' }}>S2</option>
-                                    <option value="S3" {{ old('level', $scholarship->level) == 'S3' ? 'selected' : '' }}>S3</option>
-                                    <option value="D3" {{ old('level', $scholarship->level) == 'D3' ? 'selected' : '' }}>D3</option>
-                                </select>
-                                @error('level')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+                <!-- Jenjang -->
+                <div class="col-md-4 mb-4">
+                    <label class="form-label">Jenjang</label>
+                    <select name="level" class="form-select" required>
+                        @foreach(['D3', 'S1', 'S2', 'S3'] as $lvl)
+                            <option value="{{ $lvl }}" {{ old('level', $scholarship->level) == $lvl ? 'selected' : '' }}>{{ $lvl }}</option>
+                        @endforeach
+                    </select>
+                    @error('level') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Deadline <span class="text-danger">*</span></label>
-                                <input type="date" name="deadline" class="form-control @error('deadline') is-invalid @enderror" value="{{ old('deadline', $scholarship->deadline->format('Y-m-d')) }}" required>
-                                @error('deadline')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Kuota</label>
-                                <input type="number" name="quota" class="form-control @error('quota') is-invalid @enderror" value="{{ old('quota', $scholarship->quota) }}">
-                                @error('quota')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Bidang Studi</label>
-                            <input type="text" name="field_of_study" class="form-control @error('field_of_study') is-invalid @enderror" value="{{ old('field_of_study', $scholarship->field_of_study) }}">
-                            @error('field_of_study')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Persyaratan</label>
-                            <textarea name="requirements" class="form-control @error('requirements') is-invalid @enderror" rows="3">{{ old('requirements', $scholarship->requirements) }}</textarea>
-                            @error('requirements')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Link Pendaftaran</label>
-                            <input type="url" name="link" class="form-control @error('link') is-invalid @enderror" value="{{ old('link', $scholarship->link) }}">
-                            @error('link')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-primary rounded-pill px-4">
-                                <i class="fas fa-save me-2"></i>Update
-                            </button>
-                            <a href="{{ route('admin.scholarships.index') }}" class="btn btn-outline-secondary rounded-pill px-4">Batal</a>
-                        </div>
-                    </form>
+                <!-- Deadline -->
+                <div class="col-md-4 mb-4">
+                    <label class="form-label">Batas Pendaftaran (Deadline)</label>
+                    <input type="date" name="deadline" class="form-control" value="{{ old('deadline', \Carbon\Carbon::parse($scholarship->deadline)->format('Y-m-d')) }}" required>
+                    @error('deadline') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
             </div>
-        </div>
+
+            <h5 class="mb-4 mt-3" style="color: #6C5CE7; border-bottom: 2px solid #F0E8FF; padding-bottom: 1rem;">
+                <i class="fas fa-list-ul me-2"></i> Detail Persyaratan & Deskripsi
+            </h5>
+
+            <div class="row">
+                <!-- Bidang Studi -->
+                <div class="col-md-8 mb-4">
+                    <label class="form-label">Bidang Studi</label>
+                    <input type="text" name="field_of_study" class="form-control" value="{{ old('field_of_study', $scholarship->field_of_study) }}" required>
+                    @error('field_of_study') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+
+                <!-- Kuota -->
+                <div class="col-md-4 mb-4">
+                    <label class="form-label">Kuota Penerima</label>
+                    <input type="number" name="quota" class="form-control" value="{{ old('quota', $scholarship->quota) }}" required>
+                    @error('quota') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+
+                <!-- Persyaratan -->
+                <div class="col-12 mb-4">
+                    <label class="form-label">Persyaratan Utama</label>
+                    <textarea name="requirements" class="form-control" rows="3" required>{{ old('requirements', $scholarship->requirements) }}</textarea>
+                    @error('requirements') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+
+                <!-- Deskripsi -->
+                <div class="col-12 mb-4">
+                    <label class="form-label">Deskripsi Lengkap Beasiswa</label>
+                    <textarea name="description" class="form-control" rows="5" required>{{ old('description', $scholarship->description) }}</textarea>
+                    @error('description') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+            </div>
+
+            <!-- Tombol -->
+            <div class="d-flex justify-content-end gap-3 mt-4 pt-4 border-top">
+                <a href="{{ route('admin.scholarships.index') }}" class="btn-cancel">Batal</a>
+                <button type="submit" class="btn-save">
+                    <i class="fas fa-save me-2"></i> Simpan Perubahan
+                </button>
+            </div>
+
+        </form>
     </div>
 </div>
 @endsection

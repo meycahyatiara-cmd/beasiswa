@@ -1,104 +1,63 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Kampus')
+@section('title', 'Tambah Kampus - Admin')
 
 @section('content')
 <style>
-    .admin-header {
-        background: linear-gradient(135deg, #6C5CE7 0%, #A29BFE 100%);
-        padding: 30px 0;
-        margin-top: 60px;
-        color: white;
-    }
+    .form-header-admin { background: linear-gradient(135deg, #2D1B69 0%, #6C5CE7 100%); padding: 130px 0 60px; color: white; margin-bottom: 2rem; }
+    .form-header-admin h1 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .form-card { background: white; border-radius: 24px; border: 1px solid rgba(108, 92, 231, 0.08); box-shadow: 0 15px 50px rgba(108, 92, 231, 0.08); padding: 2.5rem; margin-top: -80px; position: relative; z-index: 2; margin-bottom: 5rem; }
+    .form-label { font-weight: 600; color: #2D1B69; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .form-control { background-color: #FAF8FF; border: 2px solid #E8F0FE; border-radius: 12px; padding: 0.8rem 1rem; font-size: 0.95rem; color: #4A3B72; }
+    .form-control:focus { background-color: white; border-color: #6C5CE7; box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15); }
+    .btn-save { background: linear-gradient(135deg, #6C5CE7 0%, #A29BFE 100%); color: white; border: none; padding: 0.8rem 2.5rem; border-radius: 50px; font-weight: 700; transition: 0.3s; }
+    .btn-save:hover { transform: translateY(-3px); color: white; box-shadow: 0 10px 25px rgba(108, 92, 231, 0.4); }
+    .btn-cancel { background: #FAF8FF; color: #6C5B7B; border: 2px solid #E8F0FE; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: 0.3s; }
+    .btn-cancel:hover { background: #FFE8EC; color: #e74c3c; border-color: #FFE8EC; }
 </style>
 
-<div class="admin-header">
+<div class="form-header-admin">
     <div class="container">
-        <h1 class="fw-bold mb-0">➕ Tambah Kampus</h1>
-        <p class="mb-0 opacity-75">Isi form berikut untuk menambahkan kampus baru</p>
+        <a href="{{ route('admin.universities.index') }}" class="text-white text-decoration-none mb-3 d-inline-block" style="opacity: 0.8;">
+            <i class="fas fa-arrow-left me-2"></i> Kembali ke Daftar
+        </a>
+        <h1>Tambah Kampus Baru</h1>
+        <p class="mb-0" style="opacity: 0.8; font-weight: 300;">Lengkapi informasi kampus di bawah ini.</p>
     </div>
 </div>
 
-<div class="container py-4">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow-sm border-0 rounded-4">
-                <div class="card-body p-4">
-                    <form action="{{ route('admin.universities.store') }}" method="POST">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Nama Kampus <span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Contoh: Universitas Indonesia" value="{{ old('name') }}" required>
-                            @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Akronim <span class="text-danger">*</span></label>
-                                <input type="text" name="acronym" class="form-control @error('acronym') is-invalid @enderror" placeholder="Contoh: UI" value="{{ old('acronym') }}" required maxlength="10">
-                                @error('acronym')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Rank</label>
-                                <input type="number" name="rank" class="form-control @error('rank') is-invalid @enderror" placeholder="Contoh: 1" value="{{ old('rank', 0) }}">
-                                @error('rank')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Warna</label>
-                                <div class="d-flex gap-2">
-                                    <input type="color" name="color" class="form-control form-control-color @error('color') is-invalid @enderror" value="{{ old('color', '#6C5CE7') }}" style="width: 60px; padding: 5px;">
-                                    <input type="text" name="color_text" class="form-control" value="{{ old('color', '#6C5CE7') }}" id="colorText" style="flex: 1;">
-                                </div>
-                                @error('color')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Website</label>
-                                <input type="url" name="website" class="form-control @error('website') is-invalid @enderror" placeholder="https://ui.ac.id" value="{{ old('website') }}">
-                                @error('website')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Deskripsi</label>
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="3" placeholder="Deskripsi singkat tentang kampus">{{ old('description') }}</textarea>
-                            @error('description')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-primary rounded-pill px-4">
-                                <i class="fas fa-save me-2"></i>Simpan
-                            </button>
-                            <a href="{{ route('admin.universities.index') }}" class="btn btn-outline-secondary rounded-pill px-4">Batal</a>
-                        </div>
-                    </form>
+<div class="container">
+    <div class="form-card">
+        <form action="{{ route('admin.universities.store') }}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <label class="form-label">Nama Lengkap Kampus</label>
+                    <input type="text" name="name" class="form-control" placeholder="Cth: Universitas Indonesia" value="{{ old('name') }}" required>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label">Singkatan (Akronim)</label>
+                    <input type="text" name="acronym" class="form-control" placeholder="Cth: UI" value="{{ old('acronym') }}" required>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Nama File Logo (Opsional)</label>
+                    <input type="text" name="logo" class="form-control" placeholder="Cth: logo-ui.png" value="{{ old('logo') }}">
+                    <small class="text-muted">*Simpan file gambar di folder public/images/</small>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Website Resmi (Opsional)</label>
+                    <input type="url" name="website" class="form-control" placeholder="Cth: https://www.ui.ac.id" value="{{ old('website') }}">
+                </div>
+                <div class="col-12 mb-4">
+                    <label class="form-label">Deskripsi Singkat (Opsional)</label>
+                    <textarea name="description" class="form-control" rows="3" placeholder="Jelaskan sedikit tentang kampus ini...">{{ old('description') }}</textarea>
                 </div>
             </div>
-        </div>
+            <div class="d-flex justify-content-end gap-3 mt-4 pt-4 border-top">
+                <a href="{{ route('admin.universities.index') }}" class="btn-cancel">Batal</a>
+                <button type="submit" class="btn-save"><i class="fas fa-save me-2"></i> Simpan Kampus</button>
+            </div>
+        </form>
     </div>
 </div>
-
-<script>
-    document.querySelector('input[name="color"]').addEventListener('input', function() {
-        document.getElementById('colorText').value = this.value;
-    });
-    document.getElementById('colorText').addEventListener('input', function() {
-        document.querySelector('input[name="color"]').value = this.value;
-    });
-</script>
 @endsection

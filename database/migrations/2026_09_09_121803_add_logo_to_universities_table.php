@@ -9,14 +9,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('universities', function (Blueprint $table) {
-            $table->string('logo')->nullable()->after('acronym');
+            // $table->string('logo')->nullable()->after('acronym'); // DIKOMENTARI KARENA KOLOM SUDAH ADA
         });
     }
 
     public function down()
     {
         Schema::table('universities', function (Blueprint $table) {
-            $table->dropColumn('logo');
+            // $table->dropColumn('logo');
         });
     }
 };

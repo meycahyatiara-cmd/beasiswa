@@ -4,6 +4,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\Admin\ScholarshipController as AdminScholarshipController;
+use App\Http\Controllers\Admin\UniversityController as AdminUniversityController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController; // TAMBAHAN BARU
 use Illuminate\Support\Facades\Route;
 
 // Halaman Publik
@@ -19,3 +22,14 @@ Route::get('/scholarships/{id}', [ScholarshipController::class, 'show'])->name('
 
 // Subscribe
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe');
+
+// ==========================================
+// RUTE ADMIN
+// ==========================================
+Route::prefix('admin')->name('admin.')->group(function () {
+    // TAMBAHAN RUTE DASHBOARD
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard'); 
+    
+    Route::resource('scholarships', AdminScholarshipController::class);
+    Route::resource('universities', AdminUniversityController::class); 
+});

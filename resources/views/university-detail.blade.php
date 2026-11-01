@@ -9,9 +9,19 @@
             <div class="col-lg-4 mb-4 mb-lg-0">
                 <div class="card shadow-lg border-0 rounded-4 overflow-hidden sticky-top" style="top: 100px;">
                     <div style="background: {{ $university->color ?? '#667eea' }}; padding: 2.5rem 2rem; text-align: center; color: white;">
+                        
+                        <!-- ====== BAGIAN LOGO DIMULAI DARI SINI ====== -->
+                        @if($university->logo && file_exists(public_path($university->logo)))
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; margin: 0 auto; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            <img src="{{ asset($university->logo) }}" alt="{{ $university->name }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                        @else
                         <div style="width: 120px; height: 120px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 3rem; font-weight: 800; backdrop-filter: blur(10px); border: 3px solid rgba(255,255,255,0.3);">
                             {{ $university->acronym }}
                         </div>
+                        @endif
+                        <!-- ====== BAGIAN LOGO SELESAI ====== -->
+
                         <h4 class="mt-3 mb-0" style="font-weight: 700;">{{ $university->name }}</h4>
                         <p style="opacity: 0.9;">{{ $university->acronym }}</p>
                     </div>

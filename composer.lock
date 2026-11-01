@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f58d5e8155f8a1d82b82ddc449b4750",
+    "content-hash": "28d78155146fe4f780884b3f057b9cb3",
     "packages": [
         {
             "name": "brick/math",
@@ -3379,6 +3379,112 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.9.3"
             },
             "time": "2026-06-18T03:57:49+00:00"
+        },
+        {
+            "name": "syafiq-unijaya/laravel-ai-chatbox",
+            "version": "0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/syafiq-unijaya/laravel-ai-chatbox.git",
+                "reference": "6a24588da37868170841a4a7b2cb815cefb9e9d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/syafiq-unijaya/laravel-ai-chatbox/zipball/6a24588da37868170841a4a7b2cb815cefb9e9d7",
+                "reference": "6a24588da37868170841a4a7b2cb815cefb9e9d7",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "illuminate/http": "^10.0|^11.0|^12.0",
+                "illuminate/routing": "^10.0|^11.0|^12.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^10.0",
+                "phpunit/phpunit": "^11.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "AI": "SyafiqUnijaya\\AiChatbox\\AI"
+                    },
+                    "providers": [
+                        "SyafiqUnijaya\\AiChatbox\\AiChatboxServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SyafiqUnijaya\\AiChatbox\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Syafiq Unijaya",
+                    "email": "syafiqazwan.unijaya@gmail.com",
+                    "homepage": "https://github.com/syafiq-unijaya",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Drop-in AI chatbox widget for Laravel with RAG, streaming, Vue 3 frontend, and support for Ollama, OpenAI, Groq, and any OpenAI-compatible API.",
+            "homepage": "https://github.com/syafiq-unijaya/laravel-ai-chatbox",
+            "keywords": [
+                "ChatGpt",
+                "OpenRouter",
+                "admin-dashboard",
+                "ai",
+                "ai-assistant",
+                "ai-chatbot",
+                "ai-widget",
+                "alpine",
+                "blade-directive",
+                "chat",
+                "chat-widget",
+                "chatbot",
+                "chatbox",
+                "conversation-history",
+                "document-search",
+                "embeddings",
+                "floating-chat",
+                "gpt",
+                "groq",
+                "knowledge-base",
+                "laravel",
+                "laravel-package",
+                "laravel-widget",
+                "livewire",
+                "llama",
+                "llm",
+                "lm-studio",
+                "local-ai",
+                "local-llm",
+                "multi-provider",
+                "ollama",
+                "openai",
+                "openai-compatible",
+                "phi",
+                "rag",
+                "retrieval-augmented-generation",
+                "server-sent-events",
+                "sse",
+                "streaming",
+                "token-streaming",
+                "vector-search",
+                "vue3",
+                "widget"
+            ],
+            "support": {
+                "issues": "https://github.com/syafiq-unijaya/laravel-ai-chatbox/issues",
+                "source": "https://github.com/syafiq-unijaya/laravel-ai-chatbox"
+            },
+            "time": "2026-06-06T06:57:38+00:00"
         },
         {
             "name": "symfony/clock",

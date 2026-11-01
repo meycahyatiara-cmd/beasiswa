@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Http; // <-- TAMBAHAN BARU
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // TAMBAHAN BARU: Mengabaikan verifikasi SSL khusus untuk localhost
+        Http::globalOptions(['verify' => false]); 
     }
 }

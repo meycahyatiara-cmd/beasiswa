@@ -186,131 +186,130 @@
         }
 
         /* NAVBAR */
-        /* NAVBAR - Background Gelap Transparan */
-.navbar-custom {
-    background: linear-gradient(135deg, rgba(45, 27, 105, 0.85) 0%, rgba(108, 92, 231, 0.75) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 0.5rem 0;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+        .navbar-custom {
+            background: linear-gradient(135deg, rgba(45, 27, 105, 0.85) 0%, rgba(108, 92, 231, 0.75) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1050; 
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-.navbar-custom.scrolled {
-    background: linear-gradient(135deg, rgba(45, 27, 105, 0.95) 0%, rgba(108, 92, 231, 0.9) 100%);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
+        .navbar-custom.scrolled {
+            background: linear-gradient(135deg, rgba(45, 27, 105, 0.95) 0%, rgba(108, 92, 231, 0.9) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
 
-.navbar-custom .navbar-brand {
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    color: #FFFFFF;
-    letter-spacing: -0.5px;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-}
+        .navbar-custom .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: #FFFFFF;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
 
-.navbar-custom .navbar-brand i {
-    color: #FFFFFF;
-    margin-right: 8px;
-}
+        .navbar-custom .navbar-brand i {
+            color: #FFFFFF;
+            margin-right: 8px;
+        }
 
-.navbar-custom .nav-link {
-    color: #FFFFFF !important;
-    font-weight: 600;
-    transition: all 0.3s;
-    padding: 0.4rem 1rem !important;
-    font-size: 0.9rem;
-    text-shadow: 0 1px 15px rgba(0,0,0,0.3);
-}
+        .navbar-custom .nav-link {
+            color: #FFFFFF !important;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.4rem 1rem !important;
+            font-size: 0.9rem;
+            text-shadow: 0 1px 15px rgba(0,0,0,0.3);
+        }
 
-.navbar-custom .nav-link:hover {
-    color: #FFFFFF !important;
-    opacity: 0.9;
-}
+        .navbar-custom .nav-link:hover {
+            color: #FFFFFF !important;
+            opacity: 0.9;
+        }
 
-/* DROPDOWN */
-.dropdown-beasiswa .dropdown-toggle {
-    color: #FFFFFF !important;
-    font-weight: 600;
-    padding: 0.4rem 1rem !important;
-    font-size: 0.9rem;
-    border-radius: 50px;
-    transition: all 0.3s;
-    text-shadow: 0 1px 15px rgba(0,0,0,0.2);
-}
+        /* DROPDOWN */
+        .dropdown-beasiswa .dropdown-toggle {
+            color: #FFFFFF !important;
+            font-weight: 600;
+            padding: 0.4rem 1rem !important;
+            font-size: 0.9rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            text-shadow: 0 1px 15px rgba(0,0,0,0.2);
+        }
 
-.dropdown-beasiswa .dropdown-toggle:hover {
-    color: #FFFFFF !important;
-    background: rgba(255, 255, 255, 0.12);
-}
+        .dropdown-beasiswa .dropdown-toggle:hover {
+            color: #FFFFFF !important;
+            background: rgba(255, 255, 255, 0.12);
+        }
 
-.dropdown-beasiswa .dropdown-toggle::after {
-    color: #FFFFFF;
-}
+        .dropdown-beasiswa .dropdown-toggle::after {
+            color: #FFFFFF;
+        }
 
-.dropdown-beasiswa .dropdown-menu {
-    border: none !important;
-    border-radius: 16px !important;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.25) !important;
-    padding: 8px !important;
-    margin-top: 8px !important;
-    min-width: 220px !important;
-    background: rgba(45, 27, 105, 0.4) !important;
-    backdrop-filter: blur(25px) !important;
-    -webkit-backdrop-filter: blur(25px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
-}
+        .dropdown-beasiswa .dropdown-menu {
+            border: none !important;
+            border-radius: 16px !important;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25) !important;
+            padding: 8px !important;
+            margin-top: 8px !important;
+            min-width: 220px !important;
+            background: rgba(45, 27, 105, 0.4) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+        }
 
-.dropdown-beasiswa .dropdown-menu.show {
-    background: rgba(45, 27, 105, 0.4) !important;
-    backdrop-filter: blur(25px) !important;
-    -webkit-backdrop-filter: blur(25px) !important;
-}
+        .dropdown-beasiswa .dropdown-menu.show {
+            background: rgba(45, 27, 105, 0.4) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+        }
 
-.dropdown-beasiswa .dropdown-item {
-    border-radius: 10px !important;
-    padding: 0.5rem 1rem !important;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #FFFFFF !important;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: transparent !important;
-}
+        .dropdown-beasiswa .dropdown-item {
+            border-radius: 10px !important;
+            padding: 0.5rem 1rem !important;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #FFFFFF !important;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent !important;
+        }
 
-.dropdown-beasiswa .dropdown-item i {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.9rem;
-    width: 20px;
-    text-align: center;
-}
+        .dropdown-beasiswa .dropdown-item i {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: center;
+        }
 
-.dropdown-beasiswa .dropdown-item:hover,
-.dropdown-beasiswa .dropdown-item:focus {
-    background: rgba(255, 255, 255, 0.15) !important;
-    color: #FFFFFF !important;
-}
+        .dropdown-beasiswa .dropdown-item:hover,
+        .dropdown-beasiswa .dropdown-item:focus {
+            background: rgba(255, 255, 255, 0.15) !important;
+            color: #FFFFFF !important;
+        }
 
-.dropdown-beasiswa .dropdown-item:hover i,
-.dropdown-beasiswa .dropdown-item:focus i {
-    color: #FFFFFF;
-}
+        .dropdown-beasiswa .dropdown-item:hover i,
+        .dropdown-beasiswa .dropdown-item:focus i {
+            color: #FFFFFF;
+        }
 
-.dropdown-beasiswa .dropdown-divider {
-    margin: 6px 0;
-    border-color: rgba(255, 255, 255, 0.15) !important;
-}
+        .dropdown-beasiswa .dropdown-divider {
+            margin: 6px 0;
+            border-color: rgba(255, 255, 255, 0.15) !important;
+        }
 
         /* HERO */
         .hero-section {
@@ -349,16 +348,16 @@
         .slide.active { opacity: 1; }
 
         .hero-background-blur {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 1;
-}
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
 
         .hero-content {
             position: relative;
@@ -1014,20 +1013,21 @@
             box-shadow: 0 10px 25px rgba(108, 92, 231, 0.4);
         }
 
+        /* Subscribe Form - DIPERBAIKI */
         .subscribe-form {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.1);
             border-radius: 50px;
             padding: 5px;
             display: flex;
             align-items: center;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
             transition: all 0.3s;
         }
 
         .subscribe-form:focus-within {
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15);
+            border-color: var(--primary-light);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.2);
         }
 
         .subscribe-form input {
@@ -1051,17 +1051,18 @@
             color: white;
             padding: 0.6rem 1.5rem;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 6px;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
         }
 
         .subscribe-form button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.6);
         }
 
         .footer-bottom {
@@ -1221,6 +1222,8 @@
                             <li><a class="dropdown-item" href="{{ route('scholarships.index', ['type' => 'full']) }}"><i class="fas fa-crown"></i> Beasiswa Penuh</a></li>
                             <li><a class="dropdown-item" href="{{ route('scholarships.index', ['type' => 'partial']) }}"><i class="fas fa-gift"></i> Beasiswa Parsial</a></li>
                             <li><hr class="dropdown-divider"></li>
+                            <!-- TAMBAHAN D3 DI NAVBAR -->
+                            <li><a class="dropdown-item" href="{{ route('scholarships.index', ['level' => 'D3']) }}"><i class="fas fa-certificate"></i> Jenjang D3</a></li>
                             <li><a class="dropdown-item" href="{{ route('scholarships.index', ['level' => 'S1']) }}"><i class="fas fa-user-graduate"></i> Jenjang S1</a></li>
                             <li><a class="dropdown-item" href="{{ route('scholarships.index', ['level' => 'S2']) }}"><i class="fas fa-user-tie"></i> Jenjang S2</a></li>
                             <li><a class="dropdown-item" href="{{ route('scholarships.index', ['level' => 'S3']) }}"><i class="fas fa-microscope"></i> Jenjang S3</a></li>
@@ -1233,6 +1236,8 @@
 
     @yield('content')
 
+    {{-- FOOTER HANYA MUNCUL DI HALAMAN BERANDA --}}
+    @if(request()->routeIs('home'))
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
@@ -1270,6 +1275,8 @@
                     <ul class="footer-links">
                         <li><a href="{{ route('scholarships.index', ['type' => 'full']) }}"><i class="fas fa-chevron-right"></i>Beasiswa Penuh</a></li>
                         <li><a href="{{ route('scholarships.index', ['type' => 'partial']) }}"><i class="fas fa-chevron-right"></i>Beasiswa Parsial</a></li>
+                        <!-- TAMBAHAN D3 DI FOOTER -->
+                        <li><a href="{{ route('scholarships.index', ['level' => 'D3']) }}"><i class="fas fa-chevron-right"></i>Jenjang D3</a></li>
                         <li><a href="{{ route('scholarships.index', ['level' => 'S1']) }}"><i class="fas fa-chevron-right"></i>Jenjang S1</a></li>
                         <li><a href="{{ route('scholarships.index', ['level' => 'S2']) }}"><i class="fas fa-chevron-right"></i>Jenjang S2</a></li>
                     </ul>
@@ -1297,7 +1304,7 @@
                         @csrf
                         <input type="email" name="email" placeholder="Masukkan email kamu..." required>
                         <button type="submit">
-                            <i class="fas fa-paper-plane"></i> Subscribe
+                            <i class="fas fa-paper-plane"></i> Langganan
                         </button>
                     </form>
                     @error('email')
@@ -1313,16 +1320,32 @@
             </div>
         </div>
     </footer>
+    @endif
+
+    {{-- WIDGET AI CHATBOX: Hanya di Beranda & Disembunyikan Saat Loading --}}
+    @if(request()->routeIs('home'))
+    <div id="ai-chatbox-container" style="opacity: 0; transition: opacity 0.5s ease; pointer-events: none;">
+        @aichatbox
+    </div>
+    @endif
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // LOADING SCREEN
+            // LOADING SCREEN & CHATBOX REVEAL
             const loadingScreen = document.getElementById('loading-screen');
+            const aiChatbox = document.getElementById('ai-chatbox-container');
+            
             if (loadingScreen) {
                 setTimeout(function() {
                     loadingScreen.classList.add('hidden');
                     document.body.style.overflow = 'auto';
+                    
+                    // Munculkan chatbox setelah loading selesai
+                    if (aiChatbox) {
+                        aiChatbox.style.opacity = '1';
+                        aiChatbox.style.pointerEvents = 'auto';
+                    }
                 }, 2500);
                 document.body.style.overflow = 'hidden';
             }

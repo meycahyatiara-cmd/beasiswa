@@ -68,6 +68,11 @@
                         <i class="fas fa-gift"></i>
                         <span>Beasiswa Parsial</span>
                     </a>
+                    <!-- TAMBAHAN FILTER D3 DI SINI -->
+                    <a href="{{ route('scholarships.index', ['level' => 'D3']) }}" class="filter-chip {{ request('level') == 'D3' ? 'active' : '' }}">
+                        <i class="fas fa-certificate"></i>
+                        <span>Jenjang D3</span>
+                    </a>
                     <a href="{{ route('scholarships.index', ['level' => 'S1']) }}" class="filter-chip {{ request('level') == 'S1' ? 'active' : '' }}">
                         <i class="fas fa-user-graduate"></i>
                         <span>Jenjang S1</span>
