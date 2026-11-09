@@ -22,10 +22,13 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
+        /* PERBAIKAN: MENGUNCI SCROLL HORIZONTAL AGAR SAMA DI CHROME & EDGE */
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden; 
             font-family: 'Inter', sans-serif;
             background: #FAF8FF;
-            overflow-x: hidden;
         }
 
         /* LOADING SCREEN */
@@ -39,7 +42,7 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 0.5s ease, visibility 0.5s ease; /* Dipercepat */
             overflow: hidden;
         }
 
@@ -175,7 +178,7 @@
             width: 0%;
             background: linear-gradient(90deg, #FDCB6E, #FD79A8, #A29BFE);
             border-radius: 10px;
-            animation: loadingBar 2.5s ease-in-out forwards;
+            animation: loadingBar 1s ease-in-out forwards; /* Dipercepat jadi 1 detik */
         }
 
         @keyframes loadingBar {
@@ -194,6 +197,8 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
+            left: 0; /* Memastikan menempel di kiri */
+            right: 0; /* Memastikan menempel di kanan */
             top: 0;
             z-index: 1050; 
             transition: all 0.3s ease;
@@ -263,14 +268,14 @@
             padding: 8px !important;
             margin-top: 8px !important;
             min-width: 220px !important;
-            background: rgba(45, 27, 105, 0.4) !important;
+            background: rgba(45, 27, 105, 0.95) !important;
             backdrop-filter: blur(25px) !important;
             -webkit-backdrop-filter: blur(25px) !important;
             border: 1px solid rgba(255, 255, 255, 0.18) !important;
         }
 
         .dropdown-beasiswa .dropdown-menu.show {
-            background: rgba(45, 27, 105, 0.4) !important;
+            background: rgba(45, 27, 105, 0.95) !important;
             backdrop-filter: blur(25px) !important;
             -webkit-backdrop-filter: blur(25px) !important;
         }
@@ -321,6 +326,7 @@
             padding: 80px 0 60px;
             margin-top: 0;
             overflow: hidden;
+            width: 100%; /* Memastikan lebar 100% */
         }
 
         .slideshow-container {
@@ -748,6 +754,7 @@
             background: linear-gradient(135deg, #2D1B69 0%, #6C5CE7 50%, #A29BFE 100%);
             color: white;
             overflow: hidden;
+            width: 100%;
         }
 
         .cta-section::before {
@@ -872,6 +879,7 @@
             padding: 4rem 0 0;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .footer::before {
@@ -1013,7 +1021,7 @@
             box-shadow: 0 10px 25px rgba(108, 92, 231, 0.4);
         }
 
-        /* Subscribe Form - DIPERBAIKI */
+        /* Subscribe Form */
         .subscribe-form {
             background: rgba(255,255,255,0.1);
             border-radius: 50px;
@@ -1166,9 +1174,15 @@
             .stats-section .stat-number { font-size: 2rem; }
             .navbar-custom .navbar-brand { font-size: 1.1rem; }
             .cta-title { font-size: 2rem; }
-            .footer { padding: 3rem 0 0; }
+            .footer { padding: 3rem 0 0; text-align: center; }
+            .footer-brand { justify-content: center; }
             .footer-brand-icon { width: 40px; height: 40px; font-size: 1.1rem; }
             .footer-brand h5 { font-size: 1.1rem; }
+            
+            /* Form subscribe mobile */
+            .subscribe-form { flex-direction: column; border-radius: 20px; gap: 10px; background: transparent; padding: 0;}
+            .subscribe-form input { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 1rem; width: 100%;}
+            .subscribe-form button { width: 100%; border-radius: 10px; justify-content: center;}
         }
 
         @media (max-width: 576px) {
@@ -1176,6 +1190,19 @@
             .loader-title { font-size: 1.4rem; }
             .cta-title { font-size: 1.6rem; }
             .cta-icon { font-size: 3rem; }
+            
+            /* Search box mobile */
+            .search-box { border-radius: 20px; padding: 15px; }
+            .search-box .d-flex { flex-direction: column; gap: 15px; }
+            .search-box i { display: none; }
+            .search-box input { text-align: center; border-radius: 10px; background: rgba(255, 255, 255, 0.1); }
+            .search-box button { width: 100%; border-radius: 10px; }
+        }
+        
+        /* Memastikan elemen chatbox tidak merusak lebar layar */
+        #ai-chatbox-container {
+            max-width: 100vw;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -1203,19 +1230,19 @@
             <a class="navbar-brand" href="{{ route('home') }}">
                 <i class="fas fa-graduation-cap"></i>KampusTopIndonesia
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-white fs-4"></i> <!-- Ikon Hamburger Custom -->
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">
-                            <i class="fas fa-home me-1"></i>Beranda
+                            <i class="fas fa-home me-2"></i>Beranda
                         </a>
                     </li>
                     <li class="nav-item dropdown dropdown-beasiswa">
                         <a class="nav-link dropdown-toggle" href="#" id="beasiswaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-graduation-cap me-1"></i>Beasiswa
+                            <i class="fas fa-graduation-cap me-2"></i>Beasiswa
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="beasiswaDropdown">
                             <li><a class="dropdown-item" href="{{ route('scholarships.index') }}"><i class="fas fa-th-large"></i> Semua Kampus</a></li>
@@ -1241,44 +1268,42 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-4 text-center text-md-start">
                 <div class="col-lg-4 col-md-6">
-                    <div class="footer-brand">
-                        <div class="footer-brand-icon">
+                    <div class="footer-brand justify-content-center justify-content-md-start">
+                        <div class="footer-brand-icon me-2">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
                         <h5>KampusTopID</h5>
                     </div>
-                    <p class="footer-desc">
+                    <p class="footer-desc mt-3">
                         Website informasi kampus-kampus top di Indonesia dan program beasiswanya. Temukan beasiswa impianmu di sini!
                     </p>
-                    <div class="footer-social">
-                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <div class="d-flex justify-content-center justify-content-md-start gap-2 mt-3">
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-2 col-md-6 col-6">
                     <h6 class="footer-title">Tautan Cepat</h6>
                     <ul class="footer-links">
-                        <li><a href="{{ route('home') }}"><i class="fas fa-chevron-right"></i>Beranda</a></li>
-                        <li><a href="{{ route('scholarships.index') }}"><i class="fas fa-chevron-right"></i>Semua Beasiswa</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i>Tentang</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i>Kontak</a></li>
+                        <li><a href="{{ route('home') }}">Beranda</a></li>
+                        <li><a href="{{ route('scholarships.index') }}">Semua Beasiswa</a></li>
+                        <li><a href="#">Tentang</a></li>
+                        <li><a href="#">Kontak</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-6 col-6">
                     <h6 class="footer-title">Kategori</h6>
                     <ul class="footer-links">
-                        <li><a href="{{ route('scholarships.index', ['type' => 'full']) }}"><i class="fas fa-chevron-right"></i>Beasiswa Penuh</a></li>
-                        <li><a href="{{ route('scholarships.index', ['type' => 'partial']) }}"><i class="fas fa-chevron-right"></i>Beasiswa Parsial</a></li>
-                        <!-- TAMBAHAN D3 DI FOOTER -->
-                        <li><a href="{{ route('scholarships.index', ['level' => 'D3']) }}"><i class="fas fa-chevron-right"></i>Jenjang D3</a></li>
-                        <li><a href="{{ route('scholarships.index', ['level' => 'S1']) }}"><i class="fas fa-chevron-right"></i>Jenjang S1</a></li>
-                        <li><a href="{{ route('scholarships.index', ['level' => 'S2']) }}"><i class="fas fa-chevron-right"></i>Jenjang S2</a></li>
+                        <li><a href="{{ route('scholarships.index', ['type' => 'full']) }}">Beasiswa Penuh</a></li>
+                        <li><a href="{{ route('scholarships.index', ['type' => 'partial']) }}">Beasiswa Parsial</a></li>
+                        <li><a href="{{ route('scholarships.index', ['level' => 'D3']) }}">Jenjang D3</a></li>
+                        <li><a href="{{ route('scholarships.index', ['level' => 'S1']) }}">Jenjang S1</a></li>
                     </ul>
                 </div>
 
@@ -1302,9 +1327,9 @@
 
                     <form action="{{ route('subscribe') }}" method="POST" class="subscribe-form">
                         @csrf
-                        <input type="email" name="email" placeholder="Masukkan email kamu..." required>
+                        <input type="email" name="email" placeholder="Masukkan email..." required>
                         <button type="submit">
-                            <i class="fas fa-paper-plane"></i> Langganan
+                            <i class="fas fa-paper-plane"></i> Kirim
                         </button>
                     </form>
                     @error('email')
@@ -1346,7 +1371,7 @@
                         aiChatbox.style.opacity = '1';
                         aiChatbox.style.pointerEvents = 'auto';
                     }
-                }, 2500);
+                }, 1000); // Dipercepat jadi 1 detik
                 document.body.style.overflow = 'hidden';
             }
 

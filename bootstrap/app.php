@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // TAMBAHKAN BARIS INI UNTUK MENGAKALI ERROR 403 CSRF PADA AI CHATBOX
+        $middleware->validateCsrfTokens(except: [
+            'ai-chatbox/*',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -9,7 +9,10 @@ class UniversitySeeder extends Seeder
 {
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('universities')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         
         $universities = [
             ['name' => 'Universitas Indonesia', 'acronym' => 'UI', 'color' => '#6C5CE7', 'rank' => 1, 'logo' => 'images/ui.png'],
